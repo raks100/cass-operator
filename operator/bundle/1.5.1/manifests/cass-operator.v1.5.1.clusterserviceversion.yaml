@@ -69,7 +69,7 @@ spec:
         CassandraDatacenter is the Schema for the cassandradatacenters API
       kind: CassandraDatacenter
       version: v1beta1
-      resources: 
+      resources:
         - kind: Deployment
           version: v1
           name: ""
@@ -107,46 +107,46 @@ spec:
         - path: serverType
           description: Server Type
           displayName: Server Type
-          x-descriptors: 
+          x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:select:cassandra
             - urn:alm:descriptor:com.tectonic.ui:select:dse
-        
+
         - path: serverVersion
           description: Server Version
           displayName: Server Version
           x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:text
-        
+
         - path: clusterName
           description: |
             Name of the Cassandra cluster. Multiple CassandraDatacenter
             objects in the same namespace and Cluster Name
             will automatically be wired together as a single cluster.
           displayName: Cluster Name
-          x-descriptors: 
+          x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:text
-        
+
         - path: size
           description: Size
           displayName: Size
           x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:podCount
-        
+
         - path: racks
           description: |
-            Collection of logical rack identifiers, these may be named 
+            Collection of logical rack identifiers, these may be named
             and specify a zone to limit pod deployment.
           displayName: Racks
 
         - path: racks[0].name
           description: |
-            User friendly name of the rack. Limit characters to 
+            User friendly name of the rack. Limit characters to
             alphanumeric values, dashes, and underscores.
           displayName: Name
           x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:text
             - urn:alm:descriptor:com.tectonic.ui:arrayFieldGroup:rack
-        
+
         - path: racks[0].zone
           description: |
             failure-domain.beta.kubernetes.io/zone node label value
@@ -157,36 +157,36 @@ spec:
           x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:text
             - urn:alm:descriptor:com.tectonic.ui:arrayFieldGroup:rack
-        
+
         - path: dseWorkloads.analyticsEnabled
           description: |
             Enables the analytics advanced workload on DSE pods
           displayName: Analytics
           x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
-        
+
         - path: dseWorkloads.searchEnabled
           description: |
             Enables the search advanced workload on DSE pods
           displayName: Search
           x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
-        
+
         - path: dseWorkloads.graphEnabled
           description: |
             Enables the graph advanced workloads on DSE pods
           displayName: Graph
           x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
-        
+
         - path: resources
           description: |
-            Resource requests and limits for each Cassandra pod in the 
+            Resource requests and limits for each Cassandra pod in the
             cluster. Note: Only specify CPU and memory limits here.
           displayName: Resources
-          x-descriptors: 
+          x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:resourceRequirements
-        
+
         - path: networking.hostNetwork
           description: |
             Enables host network configuration for pods. Note only one pod is permitted per worker in this configuration.
@@ -194,7 +194,7 @@ spec:
           x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
             - urn:alm:descriptor:com.tectonic.ui:advanced
-        
+
         - path: networking.nodePort
           description: |
             Exposed ports on the Kubernetes node level for forwarding services to Cassandra pods. Most deployments will not use this functionality.
@@ -209,7 +209,7 @@ spec:
           x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:text
             - urn:alm:descriptor:com.tectonic.ui:advanced
-        
+
         - path: networking.nodePort.internodeSSL
           description: |
             Internode SSL port to use when leveraging Node Port network configuration.
@@ -217,7 +217,7 @@ spec:
           x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:text
             - urn:alm:descriptor:com.tectonic.ui:advanced
-          
+
         - path: networking.nodePort.native
           description: |
             Native transport port to use when leveraging Node Port network configuration.
@@ -242,7 +242,7 @@ spec:
 
         - path: storageConfig.cassandraDataVolumeClaimSpec.storageClassName
           description: |
-            Name of the storage class where data will reside. This must be 
+            Name of the storage class where data will reside. This must be
             defined within the Kubernetes prior to provisioning a datacenter.
           displayName: Storage Class
           x-descriptors:
@@ -256,7 +256,7 @@ spec:
           x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:select:ReadWriteOnce
             - urn:alm:descriptor:com.tectonic.ui:fieldGroup:storageConfig
-        
+
         - path: storageConfig.cassandraDataVolumeClaimSpec.resources
           description: |
             Storage requirements for the Cassandra data volume. Only specify
@@ -265,27 +265,27 @@ spec:
           x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:resourceRequirements
             - urn:alm:descriptor:com.tectonic.ui:fieldGroup:storageConfig
-        
+
         - path: superuserSecretName
           description: |
             Kubernetes Secret containing a username and password for
             the initial super user accout. Omitting this field will
-            result in a secret being created automatically with 
+            result in a secret being created automatically with
             random values for each.
           displayName: Superuser Secret Name
           x-descriptors:
             - urn:alm:descriptor:io.kubernetes:Secret
-        
+
         - path: nodeSelector
           description: |
             Selector for identifying which nodes the DC pods should be deployed on.
           displayName: Node Selector
-          x-descriptors: 
+          x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:text
-        
+
         - path: allowMultipleNodesPerWorker
           description: |
-            Allows multiple Cassandra pods per Kubernetes worker. 
+            Allows multiple Cassandra pods per Kubernetes worker.
             Ensure appropriate limits and requests are set in the
             resource field to limit the number of pods per worker.
           displayName: Allow Multiple Nodes Per Worker
@@ -297,27 +297,27 @@ spec:
             When enabled, stops all pods making up the cluster. Storage
             is retained, but all compute instances are stopped.
           displayName: Stopped
-          x-descriptors: 
+          x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
-        
+
         - path: rollingRestartRequested
           description: |
-            Request a restart of all nodes in the cluster in a rolling 
+            Request a restart of all nodes in the cluster in a rolling
             fashion to prevent service interuptions. After the restart
             is complete this field is set back to false.
           displayName: Rolling Restart Requested
-          x-descriptors: 
+          x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
 
         - path: canaryUpgrade
           description: |
             Informs the operator to apply the requested changes to
-            a single rack. After manual validation set this value 
+            a single rack. After manual validation set this value
             back to false and the operator will continue deployment.
           displayName: Canary Upgrade
           x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
-        
+
         - path: canaryUpgradeCount
           description: |
             The number of nodes that will be updated when CanaryUpgrade
@@ -332,10 +332,10 @@ spec:
             Optional: Specify the name of the image to use for each
             node in the cluster.
           displayName: Server Image
-          x-descriptors: 
+          x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:text
             - urn:alm:descriptor:com.tectonic.ui:advanced
-        
+
         - path: systemLoggerImage
           description: |
             Container image for the log tailing sidecar container.
@@ -345,20 +345,20 @@ spec:
 
         - path: configBuilderImage
           description: |
-            Optional: Specify the name of the image to use when 
-            rendering configuration files as each node in the 
+            Optional: Specify the name of the image to use when
+            rendering configuration files as each node in the
             cluster is initialized.
           displayName: Config Builder Image
-          x-descriptors: 
+          x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:text
             - urn:alm:descriptor:com.tectonic.ui:advanced
-        
+
         - path: configBuilderResource
           description: |
-            Resource requests and limits for each Cassandra pod in the 
+            Resource requests and limits for each Cassandra pod in the
             cluster. Note: Only specify CPU and memory limits here.
           displayName: Config Builder Resources
-          x-descriptors: 
+          x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:resourceRequirements
             - urn:alm:descriptor:com.tectonic.ui:advanced
 
@@ -366,11 +366,11 @@ spec:
           description: |
             A list of pod names that need to be replaced
           displayName: Replace Nodes
-          x-descriptors: 
+          x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:text
             - urn:alm:descriptor:com.tectonic.ui:arrayFieldGroup:replaceNodes
             - urn:alm:descriptor:com.tectonic.ui:advanced
-        
+
         - path: disableSystemLoggerSidecar
           description: |
             Configuration for disabling the simple log tailing sidecar
@@ -385,12 +385,12 @@ spec:
           displayName: Docker image runs as Cassandra
           x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
-          
+
         - path: forceUpgradeRacks[0]
           description: |
             Force upgrading of racks
           displayName: Force Upgrade Racks
-          x-descriptors: 
+          x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:text
             - urn:alm:descriptor:com.tectonic.ui:arrayFieldGroup:forceUpgradeRacks
             - urn:alm:descriptor:com.tectonic.ui:advanced
@@ -399,23 +399,23 @@ spec:
           description: |
             Additional seeds for Cassandra
           displayName: Additional Seeds
-          x-descriptors: 
+          x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:text
             - urn:alm:descriptor:com.tectonic.ui:arrayFieldGroup:additionalSeeds
             - urn:alm:descriptor:com.tectonic.ui:advanced
-        
+
         - path: serviceAccount
           description: Service Account
           displayName: Service Account
           x-descriptors:
             - urn:alm:descriptor:io.kubernetes:ServiceAccount
             - urn:alm:descriptor:com.tectonic.ui:advanced
-        
+
         - path: reaper
           description: |
             Reaper container settings
           displayName: Reaper
-        
+
         - path: reaper.enabled
           description: |
             Enable reaper sidecar support
@@ -423,7 +423,7 @@ spec:
           x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:fieldGroup:reaper
             - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
-        
+
         - path: reaper.image
           description: |
             Image coordinate for reaper sidecar
@@ -447,14 +447,14 @@ spec:
           x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:fieldGroup:reaper
             - urn:alm:descriptor:com.tectonic.ui:resourceRequirements
-        
+
         - path: systemLoggerResources
           description: |
             Resources for the system logger sidecar container
           displayName: System Logger Resources
           x-descriptors:
             - urn:alm:descriptor:com.tectonic.ui:resourceRequirements
-        
+
         - path: config
           description: |
             JSON object representing configuration overrides.
@@ -464,7 +464,7 @@ spec:
           description: |
             Configuration for connectivity between cass-operator and Management API
           displayName: Management API Authentication
-        
+
         - path: replaceNodes
           description: |
             A list of pod names that need to be replaced
@@ -480,32 +480,32 @@ spec:
         - path: lastRollingRestart
           description: Last Rolling Restart
           displayName: Last Rolling Restart
-          x-descriptors: 
+          x-descriptors:
             - urn:alm:descriptor:text
 
         - path: lastServerNodeStarted
           description: Last Server Node Started
           displayName: Last Server Node Started
-          x-descriptors: 
+          x-descriptors:
             - urn:alm:descriptor:text
 
         - path: superUserUpserted
           description: Super User Upserted
           displayName: Super User Upserted
-          x-descriptors: 
+          x-descriptors:
             - urn:alm:descriptor:text
-        
+
         - path: nodeReplacements
           description: |
             List of all nodes that have been replaced.
           displayName: Node Replacements
-          
+
         - path: nodeStatuses
           description: |
             Data structure containing information around the health
             of all pods in the cluster.
           displayName: Node Statuses
-        
+
         - path: observedGeneration
           description: |
             Holds information related to previous generations to detect when certain changes occur.
@@ -515,11 +515,11 @@ spec:
           description: |
             Signals when reconcilliation should not occur due to waiting on other actions to complete.
           displayName: Quiet Period
-        
+
         - path: conditions
           description: conditions
           displayName: Conditions
-        
+
         - path: message
           description: message
           displayName: Message
@@ -537,7 +537,7 @@ spec:
     across multiple datacenters is best-in-class, providing lower latency for your
     users and the peace of mind of knowing that you can survive regional outages.
 
-    ## DataStax Enterprise
+    ## DataStax Enterprise - DSE
 
     The most advanced distribution of Apache Cassandra™ on the market, with the
     enterprise functionality needed for serious production systems and backed up and
@@ -932,5 +932,7 @@ spec:
   minKubeVersion: 1.15.0
   provider:
     name: DataStax
-  replaces: cass-operator.v1.5.0
+  replaces: cass-operator.v1.4.1
   version: 1.5.1
+  skips:
+    - 1.5.0
